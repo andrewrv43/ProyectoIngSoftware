@@ -69,4 +69,21 @@ class productos(db.Model):
             'precio': self.precio,
             'id_proveedor': self.id_proveedor
         }
+
+class historial(db.Model):
+    __tablename__ = 'tbl_historial'
+    id=db.Column(db.Integer, primary_key=True)
+    id_usuario=db.Column(db.Integer, nullable=True)
+    productos=db.Column(db.String(1000), nullable=True)
+    total=db.Column(db.Double, nullable=True)
+
+    def __repr__(self):
+        return f'<historial {self.id_usuario}>'
     
+    def as_dict(self):
+        return {
+            'id': self.id,
+            'id_usuario': self.id_usuario,
+            'productos': self.productos,
+            'total': self.total
+        }
