@@ -1,34 +1,34 @@
 from flask import Blueprint, jsonify, request
-from servicio.usuarios import *
+from servicio.productos import *
 from flasgger import swag_from
 
-usuario_blueprint = Blueprint('usuario', __name__)
+producto_blueprint = Blueprint('producto', __name__)
 
 ################################################################################
-#                           USUARIOS                                           #
+#                           PRODUCTOS                                           #
 ################################################################################
 
-@usuario_blueprint.route('/usuarios', methods=['GET'])
+@producto_blueprint.route('/productos', methods=['GET'])
 @swag_from({
     'responses': {
         200: {
-            'description': 'Una lista de usuarios',
+            'description': 'Una lista de produtos productos',
             'examples': {
                 'application/json': [
-                    {'id': 1, 'nombre': 'Usuario 1', 'cedula': '1234567890', 'id_rol': 1},
-                    {'id': 2, 'nombre': 'Usuario 2', 'cedula': '0987654321', 'id_rol': 2}
+                    {'id': 1, 'nombre': 'Producto 1', 'stock': '10', 'precio': '10.5', 'id_proveedor':1},
+                    {'id': 1, 'nombre': 'Producto 2', 'stock': '15', 'precio': '5.75', 'id_proveedor':2},
                 ]
             }
         }
     }
 })
-def get_usuarios():
-    usuarios = UsuarioService.get_all_usuarios()
-    return jsonify([usuario.as_dict() for usuario in usuarios])
+def get_productos():
+    productos = ProductoService.get_all_productos()
+    return jsonify([producto.as_dict() for producto in productos])
 
 
 
-@usuario_blueprint.route('/nuevoUsuario', methods=['POST'])
+@producto_blueprint.route('/nuevoProducto', methods=['POST'])
 @swag_from({
     'parameters': [
         {
@@ -39,17 +39,17 @@ def get_usuarios():
                 'type': 'object',
                 'properties': {
                     'nombre': {'type': 'string'},
-                    'cedula': {'type': 'string'},
-                    'id_rol': {'type': 'integer'}
+                    'stock': {'type': 'int'},
+                    'precio': {'type': 'float'},
+                    'id_proveedor': {'type': 'int'}}
                 }
             }
-        }
     ],
     'responses': {
         201: {
             'description': 'Creación Exitosa',
             'examples': {
-                'application/json': {'id': 1, 'nombre': 'Andrew Rueda', 'cedula': '1722225461', 'id_rol': 2}
+                    'application/json': {'id': 1, 'nombre': 'Producto 2', 'stock': '15', 'precio': '5.75', 'id_proveedor':2},
             }
         },
         400: {
@@ -57,12 +57,12 @@ def get_usuarios():
         }
     }
 })
-def add_usuario():
+def add_producto():
     data = request.get_json()
-    usuario = UsuarioService.add_usuario(data)
-    return jsonify(usuario.as_dict()), 201
+    producto = ProductoService.add_producto(data)
+    return jsonify(producto.as_dict()), 201
 
-@usuario_blueprint.route('/eliminarUsuario', methods=['POST'])
+@producto_blueprint.route('/eliminarProducto', methods=['POST'])
 @swag_from({
     'parameters': [
         {
@@ -89,12 +89,12 @@ def add_usuario():
         }
     }
 })
-def delete_usuario():
+def delete_producto():
     data = request.get_json()
-    usuario = UsuarioService.delete_usuario(data)
-    return jsonify(usuario.as_dict()), 200
+    producto = ProductoService.delete_producto(data)
+    return jsonify(producto.as_dict()), 200
 
-@usuario_blueprint.route('/obtUsuario', methods=['POST'])
+@producto_blueprint.route('/obtProducto', methods=['POST'])
 @swag_from({
     'parameters': [
         {
@@ -113,7 +113,7 @@ def delete_usuario():
         200: {
             'description': 'Eliminación Exitosa',
             'examples': {
-                'application/json': {'id': 1,'nombre':'Adrian Villacres','cedula':'085007269','id_rol':1}
+                   'application/json': {'id': 1, 'nombre': 'Producto 2', 'stock': '15', 'precio': '5.75', 'id_proveedor':2},
             }
         },
         400: {
@@ -121,30 +121,30 @@ def delete_usuario():
         }
     }
 })
-def obtener_usuario():
+def obtener_producto():
     data = request.get_json()
-    usuario = UsuarioService.get_usuario_by_id(data)
-    return jsonify(usuario.as_dict()), 200
+    producto = ProductoService.get_producto_by_id(data)
+    return jsonify(producto.as_dict()), 200
 
 
 ################################################################################
-#                           ROLES                                              #
+#                           PROVEEDORES                                        #
 ################################################################################
-@usuario_blueprint.route('/obtRoles', methods=['GET'])
+@producto_blueprint.route('/obtProveedores', methods=['GET'])
 @swag_from({
     'responses': {
         200: {
-            'description': 'A list of usuarios',
+            'description': 'Una lista de proveedores',
             'examples': {
                 'application/json': [
-                    {'id': 1, 'nombre': 'Administrador'},
-                    {'id': 2, 'nombre': 'Cajero'}
+                    {'id': 1, 'nombre': 'Proveedor 1'},
+                    {'id': 2, 'nombre': 'Proveedor 2'}
                 ]
             }
         }
     }
 })
-def get_Rol():
-    roles = UsuarioService.get_roles()
-    return jsonify([rol.as_dict() for rol in roles])
+def get_Proveedor():
+    proveedores = ProductoService.get_Proveedores()
+    return jsonify([proveedor.as_dict() for proveedor in proveedores])
 
