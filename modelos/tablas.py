@@ -40,6 +40,19 @@ class roles(db.Model):
             'nombre': self.nombre,
         }
 
+class promociones(db.Model):
+    __tablename__ = 'tbl_promociones'
+    id = db.Column(db.Integer, primary_key=True)
+    id_producto = db.Column(db.Integer, db.ForeignKey('tbl_producto.id'), nullable=False)
+    porcentaje = db.Column(db.Integer, nullable=False)
+    
+    def as_dict(self):
+        return {
+            'id': self.id,
+            'id_producto': self.id_producto,
+            'porcentaje': self.porcentaje
+        }
+
 class proveedores(db.Model):
     __tablename__ = 'tbl_proveedor'
     id = db.Column(db.Integer, primary_key=True)

@@ -111,7 +111,7 @@ def delete_producto():
     ],
     'responses': {
         200: {
-            'description': 'Eliminación Exitosa',
+            'description': 'Busqueda Exitosa',
             'examples': {
                    'application/json': {'id': 1, 'nombre': 'Producto 2', 'stock': '15', 'precio': '5.75', 'id_proveedor':2},
             }

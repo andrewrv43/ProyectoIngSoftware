@@ -111,7 +111,7 @@ def delete_usuario():
     ],
     'responses': {
         200: {
-            'description': 'Eliminación Exitosa',
+            'description': 'Busqueda Exitosa',
             'examples': {
                 'application/json': {'id': 1,'nombre':'Adrian Villacres','cedula':'085007269','id_rol':1}
             }
