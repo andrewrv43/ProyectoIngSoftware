@@ -1,3 +1,4 @@
 *.rbc
 *.fyc
 venv/
+__pycache__/
