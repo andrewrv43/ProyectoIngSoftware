@@ -40,3 +40,9 @@ class ProductoService:
     @staticmethod
     def get_Proveedores():
         return ProductoRepository.get_Proveedores()
+    
+    @staticmethod
+    def add_Proveedor(data):
+        new_proveedor = productos(nombre=data['nombre'])
+        ProductoRepository.add_proveedor(new_proveedor)
+        return new_proveedor

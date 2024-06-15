@@ -148,3 +148,35 @@ def get_Proveedor():
     proveedores = ProductoService.get_Proveedores()
     return jsonify([proveedor.as_dict() for proveedor in proveedores])
 
+
+@producto_blueprint.route('/nuevoProveedor', methods=['POST'])
+@swag_from({
+    'parameters': [
+        {
+            'name': 'body',
+            'in': 'body',
+            'required': True,
+            'schema': {
+                'type': 'object',
+                'properties': {
+                    'nombre': {'type': 'string'},
+                }
+            }
+        }
+    ],
+    'responses': {
+        201: {
+            'description': 'Creación Exitosa',
+            'examples': {
+                    'application/json': {'id': 1, 'nombre': 'Proveedor 1'},
+            }
+        },
+        400: {
+            'description': 'Request Invalido'
+        }
+    }
+})
+def add_proveedor():
+    data = request.get_json()
+    proveedor = ProductoService.add_proveedor(data)
+    return jsonify(proveedor.as_dict()), 201
