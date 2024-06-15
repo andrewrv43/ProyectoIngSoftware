@@ -198,3 +198,38 @@ def add_proveedor():
     data = request.get_json()
     proveedor = ProductoService.add_Proveedor(data)
     return jsonify(proveedor.as_dict()), 201
+
+@producto_blueprint.route('/eliminarProveedor', methods=['POST'])
+@swag_from({
+    'tags':['PROVEEDORES'],
+    'summary':'Eliminar un proveedor',
+    'description':'Eliminar un proveedor',
+    'parameters': [
+        {
+            'name': 'body',
+            'in': 'body',
+            'required': True,
+            'schema': {
+                'type': 'object',
+                'properties': {
+                    'id': {'type': 'integer'}
+                }
+            }
+        }
+    ],
+    'responses': {
+        200: {
+            'description': 'Eliminación Exitosa',
+            'examples': {
+                'application/json': {'id': 1}
+            }
+        },
+        400: {
+            'description': 'Request Invalido'
+        }
+    }
+})
+def delete_proveedores():
+    data = request.get_json()
+    proveedores = ProductoService.delete_proveedores(data)
+    return jsonify(proveedores.as_dict()), 200

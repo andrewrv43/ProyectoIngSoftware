@@ -32,3 +32,12 @@ class ProductoRepository:
     def add_proveedor(proveedor):
         db.session.add(proveedor)
         db.session.commit()
+
+    @staticmethod
+    def get_proveedor_by_id(proveedor_id):
+        return proveedores.query.get(proveedor_id)
+
+    @staticmethod
+    def delete_proveedor(proveedor):
+        db.session.delete(proveedor)
+        db.session.commit()

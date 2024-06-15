@@ -46,3 +46,11 @@ class ProductoService:
         new_proveedor = proveedores(nombre=data['nombre'])
         ProductoRepository.add_proveedor(new_proveedor)
         return new_proveedor
+    
+    @staticmethod
+    def delete_proveedores(proveedor_id):
+        proveedor = ProductoRepository.get_proveedor_by_id(proveedor_id['id'])
+        if proveedor:
+            ProductoRepository.delete_proveedor(proveedor)
+            return proveedor
+        return None
