@@ -148,3 +148,35 @@ def get_Rol():
     roles = UsuarioService.get_roles()
     return jsonify([rol.as_dict() for rol in roles])
 
+
+@usuario_blueprint.route('/nuevoRol', methods=['POST'])
+@swag_from({
+    'parameters': [
+        {
+            'name': 'body',
+            'in': 'body',
+            'required': True,
+            'schema': {
+                'type': 'object',
+                'properties': {
+                    'nombre': {'type': 'string'},
+                }
+            }
+        }
+    ],
+    'responses': {
+        201: {
+            'description': 'Creación Exitosa',
+            'examples': {
+                'application/json': {'id': 1, 'nombre': 'Adminstrador'}
+            }
+        },
+        400: {
+            'description': 'Request Invalido'
+        }
+    }
+})
+def add_rol():
+    data = request.get_json()
+    rol = UsuarioService.add_rol(data)
+    return jsonify(rol.as_dict()), 201

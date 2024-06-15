@@ -27,3 +27,8 @@ class UsuarioRepository:
     @staticmethod
     def get_roles():
         return roles.query.all()
+
+    @staticmethod
+    def add_rol(rol):
+        db.session.add(rol)
+        db.session.commit()

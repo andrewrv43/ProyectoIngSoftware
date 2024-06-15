@@ -39,3 +39,9 @@ class UsuarioService:
     @staticmethod
     def get_roles():
         return UsuarioRepository.get_roles()
+    
+    @staticmethod
+    def add_rol(data):
+        new_rol = roles(nombre=data['nombre'])
+        UsuarioRepository.add_rol(new_rol)
+        return new_rol
