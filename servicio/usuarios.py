@@ -13,7 +13,7 @@ class UsuarioService:
 
     @staticmethod
     def add_usuario(data):
-        new_usuario = usuarios(nombre=data['nombre'], cedula=data['cedula'], id_rol=data['id_rol'])
+        new_usuario = usuarios(nombre=data['nombre'], cedula=data['cedula'], id_rol=data['id_rol'],password=data['password'])
         UsuarioRepository.add_usuario(new_usuario)
         return new_usuario
 

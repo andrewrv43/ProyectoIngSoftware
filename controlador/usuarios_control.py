@@ -46,7 +46,8 @@ def get_usuarios():
                 'properties': {
                     'nombre': {'type': 'string'},
                     'cedula': {'type': 'string'},
-                    'id_rol': {'type': 'integer'}
+                    'id_rol': {'type': 'integer'},
+                    'password':{'type':'string'}
                 }
             }
         }
@@ -55,7 +56,7 @@ def get_usuarios():
         201: {
             'description': 'Creación Exitosa',
             'examples': {
-                'application/json': {'id': 1, 'nombre': 'Andrew Rueda', 'cedula': '1722225461', 'id_rol': 2}
+                'application/json': {'id': 1, 'nombre': 'Andrew Rueda', 'cedula': '1722225461', 'id_rol': 2, 'password':"12345"}
             }
         },
         400: {

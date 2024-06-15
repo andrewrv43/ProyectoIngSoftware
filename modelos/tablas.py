@@ -17,6 +17,7 @@ class usuarios(db.Model):
     nombre = db.Column(db.String(80), unique=True, nullable=False)
     cedula = db.Column(db.String(10), nullable=True)
     id_rol = db.Column(db.Integer, db.ForeignKey('tbl_rol.id'), nullable=False)
+    password = db.Column(db.String(10), nullable=False)
 
     def __repr__(self):
         return f'<usuarios {self.nombre}>'
@@ -26,7 +27,8 @@ class usuarios(db.Model):
             'id': self.id,
             'nombre': self.nombre,
             'cedula': self.cedula,
-            'id_rol': self.id_rol
+            'id_rol': self.id_rol,
+            'password': self.password
         }
     
 class roles(db.Model):
