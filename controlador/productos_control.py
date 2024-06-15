@@ -178,5 +178,5 @@ def get_Proveedor():
 })
 def add_proveedor():
     data = request.get_json()
-    proveedor = ProductoService.add_proveedor(data)
+    proveedor = ProductoService.add_Proveedor(data)
     return jsonify(proveedor.as_dict()), 201

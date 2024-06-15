@@ -27,3 +27,8 @@ class ProductoRepository:
     @staticmethod
     def get_Proveedores():
         return proveedores.query.all()
+    
+    @staticmethod
+    def add_proveedor(proveedor):
+        db.session.add(proveedor)
+        db.session.commit()

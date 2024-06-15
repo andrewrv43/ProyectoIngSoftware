@@ -1,5 +1,5 @@
 from repositorio.productos_repos import ProductoRepository
-from modelos.tablas import productos,roles
+from modelos.tablas import productos, proveedores,roles
 
 class ProductoService:
 
@@ -43,6 +43,6 @@ class ProductoService:
     
     @staticmethod
     def add_Proveedor(data):
-        new_proveedor = productos(nombre=data['nombre'])
+        new_proveedor = proveedores(nombre=data['nombre'])
         ProductoRepository.add_proveedor(new_proveedor)
         return new_proveedor
