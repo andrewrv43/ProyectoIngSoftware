@@ -10,6 +10,9 @@ usuario_blueprint = Blueprint('usuario', __name__)
 
 @usuario_blueprint.route('/usuarios', methods=['GET'])
 @swag_from({
+    'tags':['USUARIOS'],
+    'summary':'Obtener todos los usuarios existentes',
+    'description':'Obtener todos los usuarios existentes',
     'responses': {
         200: {
             'description': 'Una lista de usuarios',
@@ -30,6 +33,9 @@ def get_usuarios():
 
 @usuario_blueprint.route('/nuevoUsuario', methods=['POST'])
 @swag_from({
+    'tags':['USUARIOS'],
+    'summary':'Creacion de Nuevo Usuario',
+    'description':'Creacion de Nuevo Usuario',
     'parameters': [
         {
             'name': 'body',
@@ -64,6 +70,9 @@ def add_usuario():
 
 @usuario_blueprint.route('/eliminarUsuario', methods=['POST'])
 @swag_from({
+    'tags':['USUARIOS'],
+    'summary':'Eliminar Usuario por ID',
+    'description':'Eliminar Usuario por ID',
     'parameters': [
         {
             'name': 'body',
@@ -96,6 +105,9 @@ def delete_usuario():
 
 @usuario_blueprint.route('/obtUsuario', methods=['POST'])
 @swag_from({
+    'tags':['USUARIOS'],
+    'summary':'Obtener Usuario Especifico Por ID',
+    'description':'Obtener Usuario Especifico Por ID',
     'parameters': [
         {
             'name': 'body',
@@ -132,9 +144,12 @@ def obtener_usuario():
 ################################################################################
 @usuario_blueprint.route('/obtRoles', methods=['GET'])
 @swag_from({
+    'tags':['ROLES'],
+    'summary':'Obtener Todos los Roles Existentes',
+    'description':'Obtener Todos los Roles Existentes',
     'responses': {
         200: {
-            'description': 'A list of usuarios',
+            'description': 'Lista de roles obtenidos',
             'examples': {
                 'application/json': [
                     {'id': 1, 'nombre': 'Administrador'},
@@ -151,6 +166,9 @@ def get_Rol():
 
 @usuario_blueprint.route('/nuevoRol', methods=['POST'])
 @swag_from({
+    'tags':['ROLES'],
+    'summary':'Crear Roles',
+    'description':'Crear Roles',
     'parameters': [
         {
             'name': 'body',
@@ -179,4 +197,39 @@ def get_Rol():
 def add_rol():
     data = request.get_json()
     rol = UsuarioService.add_rol(data)
+    return jsonify(rol.as_dict()), 201
+
+@usuario_blueprint.route('/eliminarRol', methods=['POST'])
+@swag_from({
+    'tags':['ROLES'],
+    'summary':'Crear Roles',
+    'description':'Crear Roles',
+    'parameters': [
+        {
+            'name': 'body',
+            'in': 'body',
+            'required': True,
+            'schema': {
+                'type': 'object',
+                'properties': {
+                    'id': {'type': 'integer'},
+                }
+            }
+        }
+    ],
+    'responses': {
+        201: {
+            'description': 'Eliminación Exitosa',
+            'examples': {
+                'application/json': {'id': 1, 'nombre': 'Adminstrador'}
+            }
+        },
+        400: {
+            'description': 'Request Invalido'
+        }
+    }
+})
+def delete_rol():
+    data = request.get_json()
+    rol = UsuarioService.delete_rol(data)
     return jsonify(rol.as_dict()), 201

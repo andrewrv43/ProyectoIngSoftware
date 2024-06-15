@@ -45,3 +45,11 @@ class UsuarioService:
         new_rol = roles(nombre=data['nombre'])
         UsuarioRepository.add_rol(new_rol)
         return new_rol
+    
+    @staticmethod
+    def delete_rol(rol_id):
+        rol = UsuarioRepository.get_rol_by_id(rol_id['id'])
+        if rol:
+            UsuarioRepository.delete_rol(rol)
+            return rol
+        return None

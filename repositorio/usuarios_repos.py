@@ -32,3 +32,12 @@ class UsuarioRepository:
     def add_rol(rol):
         db.session.add(rol)
         db.session.commit()
+
+    @staticmethod
+    def get_rol_by_id(rol_id):
+        return roles.query.get(rol_id)
+    
+    @staticmethod
+    def delete_rol(rol):
+        db.session.delete(rol)
+        db.session.commit()
