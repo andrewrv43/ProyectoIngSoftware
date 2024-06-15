@@ -10,6 +10,10 @@ historial_blueprint = Blueprint('historial', __name__)
 
 @historial_blueprint.route('/historial', methods=['GET'])
 @swag_from({
+    'tags':['HISTORIAL'],
+    'summary':'Obtencion de todo el historial de compras',
+    'description':'Obtencion de todo el historial de compras',
+
     'responses': {
         200: {
             'description': 'Una lista de historial',
@@ -30,6 +34,9 @@ def get_historial():
 
 @historial_blueprint.route('/nuevoHistorial', methods=['POST'])
 @swag_from({
+        'tags':['HISTORIAL'],
+    'summary':'Creación de un dato en el historial',
+    'description':'Creación de un dato en el historial',
     'parameters': [
         {
             'name': 'body',
@@ -67,6 +74,10 @@ def add_historial():
 
 @historial_blueprint.route('/obtHistorial', methods=['POST'])
 @swag_from({
+
+    'tags':['HISTORIAL'],
+    'summary':'Obtiene un historial específico por ID',
+    'description':'Obtiene un historial específico por ID',
     'parameters': [
         {
             'name': 'body',
