@@ -202,8 +202,8 @@ def add_rol():
 @usuario_blueprint.route('/eliminarRol', methods=['POST'])
 @swag_from({
     'tags':['ROLES'],
-    'summary':'Crear Roles',
-    'description':'Crear Roles',
+    'summary':'Eliminar Roles',
+    'description':'Eliminar Roles',
     'parameters': [
         {
             'name': 'body',

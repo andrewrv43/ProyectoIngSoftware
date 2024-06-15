@@ -144,6 +144,9 @@ def obtener_producto():
 ################################################################################
 @producto_blueprint.route('/obtProveedores', methods=['GET'])
 @swag_from({
+    'tags':['PROVEEDORES'],
+    'summary':'Obtener una lista de todos los proveedores',
+    'description':'Obtener una lista de todos los proveedores',
     'responses': {
         200: {
             'description': 'Una lista de proveedores',
@@ -163,6 +166,9 @@ def get_Proveedor():
 
 @producto_blueprint.route('/nuevoProveedor', methods=['POST'])
 @swag_from({
+    'tags':['PROVEEDORES'],
+    'summary':'Creacion de un nuevo proveedor',
+    'description':'Creacion de un nuevo proveedor',
     'parameters': [
         {
             'name': 'body',

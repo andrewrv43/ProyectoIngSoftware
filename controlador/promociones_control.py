@@ -10,6 +10,9 @@ promociones_blueprint = Blueprint('promociones', __name__)
 
 @promociones_blueprint.route('/promociones', methods=['GET'])
 @swag_from({
+    'tags':['PROMOCIONES'],
+    'summary':'Obtener una lista de promociones',
+    'description':'Obtener una lista de promociones',
     'responses': {
         200: {
             'description': 'Una lista de promociones',
@@ -30,6 +33,9 @@ def get_promociones():
 
 @promociones_blueprint.route('/nuevaPromocion', methods=['POST'])
 @swag_from({
+    'tags':['PROMOCIONES'],
+    'summary':'Crear una nueva promoción',
+    'description':'Crear una nueva promoción',
     'parameters': [
         {
             'name': 'body',
@@ -63,6 +69,9 @@ def add_promociones():
 
 @promociones_blueprint.route('/eliminarPromocion', methods=['POST'])
 @swag_from({
+    'tags':['PROMOCIONES'],
+    'summary':'Eliminar una promoción',
+    'description':'Eliminar una promoción',
     'parameters': [
         {
             'name': 'body',
@@ -95,6 +104,9 @@ def delete_promociones():
 
 @promociones_blueprint.route('/obtPromocion', methods=['POST'])
 @swag_from({
+    'tags':['PROMOCIONES'],
+    'summary':'Obtener una Promoción especifica Por ID',
+    'description':'Obtener una Promoción especifica Por ID',
     'parameters': [
         {
             'name': 'body',
