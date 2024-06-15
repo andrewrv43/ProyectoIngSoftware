@@ -10,6 +10,9 @@ producto_blueprint = Blueprint('producto', __name__)
 
 @producto_blueprint.route('/productos', methods=['GET'])
 @swag_from({
+    'tags': ['PRODUCTOS'],
+    'summary':'Obtener todos los productos existentes',
+    'description':'Obtener todos los productos existentes',
     'responses': {
         200: {
             'description': 'Una lista de produtos productos',
@@ -30,6 +33,9 @@ def get_productos():
 
 @producto_blueprint.route('/nuevoProducto', methods=['POST'])
 @swag_from({
+    'tags': ['PRODUCTOS'],
+    'summary':'Creacion de un nuevo producto',
+    'description':'Creacion de un nuevo producto',
     'parameters': [
         {
             'name': 'body',
@@ -64,6 +70,9 @@ def add_producto():
 
 @producto_blueprint.route('/eliminarProducto', methods=['POST'])
 @swag_from({
+    'tags': ['PRODUCTOS'],
+    'summary':'Eliminar un producto',
+    'description':'Eliminar un producto',
     'parameters': [
         {
             'name': 'body',
@@ -96,6 +105,9 @@ def delete_producto():
 
 @producto_blueprint.route('/obtProducto', methods=['POST'])
 @swag_from({
+    'tags':['PRODUCTOS'],
+    'summary':'Obtener Producto Especifico Por ID',
+    'description':'Obtener Producto Especifico Por ID',
     'parameters': [
         {
             'name': 'body',
