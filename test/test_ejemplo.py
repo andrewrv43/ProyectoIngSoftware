@@ -1,0 +1,62 @@
+import json
+
+#TEST ENDPOINTS USUARIOS
+
+def test_get_usuarios(client):
+    response = client.get('/usuarios')
+    assert response.status_code == 200
+    data = json.loads(response.data)
+    assert isinstance(data, list)
+
+def test_add_usuario(client):
+    new_user = {
+        'nombre': 'Andrew Rueda 2',
+        'cedula': '1722225461',
+        'id_rol': 2,
+        'password': '12345'
+    }
+    response = client.post('/nuevoUsuario', json=new_user)
+    assert response.status_code == 201
+    data = json.loads(response.data)
+    assert data['nombre'] == 'Andrew Rueda 2'
+    assert data['cedula'] == '1722225461'
+    assert data['id_rol'] == 2
+    assert data['password'] == '12345'
+
+def test_delete_usuario(client):
+    delete_id = {'id': 6}
+    response = client.post('/eliminarUsuario', json=delete_id)
+    assert response.status_code == 200
+    data = json.loads(response.data)
+    assert data['id'] == 6
+
+def test_get_obtUsuario(client):
+    get_id = {'id': 1}
+    response = client.post('/obtUsuario', json=get_id)
+    assert response.status_code == 200
+    data = json.loads(response.data)
+    assert data['id'] == 1
+
+#TEST ENDPOINTS ROLES
+
+def test_get_obtRoles(client):
+    response = client.get('/obtRoles')
+    assert response.status_code == 200
+    data = json.loads(response.data)
+    assert isinstance(data, list)
+
+def test_add_Rol(client):
+    new_rol = {
+        "nombre": "Rol Test"
+    }
+    response = client.post('/nuevoRol', json=new_rol)
+    assert response.status_code == 201
+    data = json.loads(response.data)
+    assert data['nombre'] == 'Rol Test'
+
+def test_delete_rol(client):
+    delete_id = {'id': 3}
+    response = client.post('/eliminarRol', json=delete_id)
+    assert response.status_code == 201
+    data = json.loads(response.data)
+    assert data['id'] == 3
