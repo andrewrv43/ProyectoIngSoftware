@@ -121,4 +121,8 @@ def test_get_Proveedor(client):
     assert response.status_code == 200
     assert isinstance(response.json, list)
 
-    
+def test_add_proveedor(client):
+    data = {'nombre':'Proveedor 3'}
+    response = client.post('/nuevoProveedor', json=data)
+    assert response.status_code == 201
+    assert response.json['nombre'] == data['nombre']
