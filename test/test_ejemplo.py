@@ -89,3 +89,16 @@ def test_get_productos(client):
     assert response.status_code == 200
     assert isinstance(response.json, list)
 
+def test_add_producto(client):
+    data = {
+        'nombre': 'Producto 2',
+        'stock': 15,
+        'precio': 5.75,
+        'id_proveedor': 2
+    }
+    response = client.post('/nuevoProducto', json=data)
+    assert response.status_code == 201
+    assert response.json['nombre'] == data['nombre']
+    assert response.json['stock'] == data['stock']
+    assert response.json['precio'] == data['precio']
+    assert response.json['id_proveedor'] == data['id_proveedor']
