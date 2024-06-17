@@ -109,3 +109,8 @@ def test_delete_producto(client):
     assert response.status_code == 200
     assert response.json['id'] == data['id']
 
+def test_obtener_producto_id(client):
+    data = {'id': 1}
+    response = client.post('/obtProducto', json=data)
+    assert response.status_code == 200
+    assert response.json['id'] == data['id']
