@@ -148,3 +148,10 @@ def test_nueva_Promocion(client):
     response = client.post('/nuevaPromocion', json=data)
     assert response.status_code == 201
     assert response.json['porcentaje'] == data['porcentaje']
+
+def test_delete_Promocion(client):
+    data = {'id': 1}
+    response = client.post('/eliminarPromocion', json=data)
+    assert response.status_code == 200
+    assert response.json['id'] == data['id']
+
