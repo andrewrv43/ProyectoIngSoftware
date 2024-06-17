@@ -77,3 +77,9 @@ def test_add_historial(client):
     assert response.json['id_usuario'] == data['id_usuario']
     assert response.json['productos'] == data['productos']
     assert response.json['total'] == data['total']
+
+def test_obtener_historial_id(client):
+    data = {'id': 1}
+    response = client.post('/obtHistorial', json=data)
+    assert response.status_code == 200
+    assert response.json['id'] == data['id']
