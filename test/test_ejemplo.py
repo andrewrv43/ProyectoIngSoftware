@@ -142,3 +142,9 @@ def test_get_Promociones(client):
     response = client.get('/promociones')
     assert response.status_code == 200
     assert isinstance(response.json, list)
+
+def test_nueva_Promocion(client):
+    data = {'idProducto':1,'procentaje':15}
+    response = client.post('/nuevaPromocion', json=data)
+    assert response.status_code == 201
+    assert response.json['porcentaje'] == data['porcentaje']
