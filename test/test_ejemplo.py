@@ -83,3 +83,9 @@ def test_obtener_historial_id(client):
     response = client.post('/obtHistorial', json=data)
     assert response.status_code == 200
     assert response.json['id'] == data['id']
+
+def test_get_productos(client):
+    response = client.get('/productos')
+    assert response.status_code == 200
+    assert isinstance(response.json, list)
+
