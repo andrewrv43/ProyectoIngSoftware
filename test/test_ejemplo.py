@@ -24,18 +24,18 @@ def test_add_usuario(client):
     assert data['password'] == '12345'
 
 def test_delete_usuario(client):
-    delete_id = {'id': 6}
+    delete_id = {'id': 2}
     response = client.post('/eliminarUsuario', json=delete_id)
     assert response.status_code == 200
     data = json.loads(response.data)
-    assert data['id'] == 6
+    assert data['id'] == 2
 
 def test_get_obtUsuario(client):
-    get_id = {'id': 1}
+    get_id = {'id': 3}
     response = client.post('/obtUsuario', json=get_id)
     assert response.status_code == 200
     data = json.loads(response.data)
-    assert data['id'] == 1
+    assert data['id'] == 3
 
 #TEST ENDPOINTS ROLES
 
@@ -55,11 +55,11 @@ def test_add_Rol(client):
     assert data['nombre'] == 'Rol Test'
 
 def test_delete_rol(client):
-    delete_id = {'id': 3}
+    delete_id = {'id': 2}
     response = client.post('/eliminarRol', json=delete_id)
     assert response.status_code == 201
     data = json.loads(response.data)
-    assert data['id'] == 3
+    assert data['id'] == 2 
 #TEST ENDPOINTS HITORIAL
 
 def test_get_historial(client):
@@ -70,7 +70,7 @@ def test_get_historial(client):
 def test_add_historial(client):
     data = {
         'id_usuario': 1,
-        'productos': 'Producto A, Producto B',
+        'productos': 'Producto A, Producto B,pRODUCTOC',
         'total': 150.75
     }
     response = client.post('/nuevoHistorial',json=data)
@@ -107,13 +107,13 @@ def test_add_producto(client):
     assert response.json['id_proveedor'] == data['id_proveedor']
 
 def test_delete_producto(client):
-    data = {'id': 1}
+    data = {'id': 2}
     response = client.post('/eliminarProducto', json=data)
     assert response.status_code == 200
     assert response.json['id'] == data['id']
 
 def test_obtener_producto_id(client):
-    data = {'id': 1}
+    data = {'id': 3}
     response = client.post('/obtProducto', json=data)
     assert response.status_code == 200
     assert response.json['id'] == data['id']
@@ -126,13 +126,13 @@ def test_get_Proveedor(client):
     assert isinstance(response.json, list)
 
 def test_add_proveedor(client):
-    data = {'nombre':'Proveedor 3'}
+    data = {'nombre':'Proveedor 2'}
     response = client.post('/nuevoProveedor', json=data)
     assert response.status_code == 201
     assert response.json['nombre'] == data['nombre']
 
 def test_delete_proveedores(client):
-    data = {'id': 1}
+    data = {'id': 2}
     response = client.post('/eliminarProveedor', json=data)
     assert response.status_code == 200
     assert response.json['id'] == data['id']
@@ -144,19 +144,19 @@ def test_get_Promociones(client):
     assert isinstance(response.json, list)
 
 def test_nueva_Promocion(client):
-    data = {'idProducto':1,'procentaje':15}
+    data = {'id_producto':2,'porcentaje':20}
     response = client.post('/nuevaPromocion', json=data)
     assert response.status_code == 201
     assert response.json['porcentaje'] == data['porcentaje']
 
 def test_delete_Promocion(client):
-    data = {'id': 1}
+    data = {'id': 2}
     response = client.post('/eliminarPromocion', json=data)
     assert response.status_code == 200
     assert response.json['id'] == data['id']
 
 def test_obtener_Promocion_id(client):
-    data = {'id': 1}
+    data = {'id': 3}
     response = client.post('/obtPromocion', json=data)
     assert response.status_code == 200
     assert response.json['id'] == data['id']

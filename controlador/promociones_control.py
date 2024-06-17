@@ -45,7 +45,7 @@ def get_promociones():
                 'type': 'object',
                 'properties': {
                     'id_producto': {'type': 'integer'},
-                    'procentaje': {'type': 'integer'},
+                    'porcentaje': {'type': 'integer'},
                 }
             }
         }
