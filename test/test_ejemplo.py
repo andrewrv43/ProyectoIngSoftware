@@ -60,6 +60,7 @@ def test_delete_rol(client):
     assert response.status_code == 201
     data = json.loads(response.data)
     assert data['id'] == 3
+#TEST ENDPOINTS HITORIAL
 
 def test_get_historial(client):
     response = client.get('/historial')
@@ -83,6 +84,8 @@ def test_obtener_historial_id(client):
     response = client.post('/obtHistorial', json=data)
     assert response.status_code == 200
     assert response.json['id'] == data['id']
+
+#TEST ENDPOINTS PRODUCTOS
 
 def test_get_productos(client):
     response = client.get('/productos')
@@ -115,6 +118,7 @@ def test_obtener_producto_id(client):
     assert response.status_code == 200
     assert response.json['id'] == data['id']
 
+#TEST ENDPOINTS PROVEEDORES
 
 def test_get_Proveedor(client):
     response = client.get('/obtProveedores')
@@ -132,3 +136,9 @@ def test_delete_proveedores(client):
     response = client.post('/eliminarProveedor', json=data)
     assert response.status_code == 200
     assert response.json['id'] == data['id']
+
+#TEST ENDPOINTS PROMOCIONES
+def test_get_Promociones(client):
+    response = client.get('/promociones')
+    assert response.status_code == 200
+    assert isinstance(response.json, list)
