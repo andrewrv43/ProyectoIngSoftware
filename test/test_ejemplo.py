@@ -126,3 +126,9 @@ def test_add_proveedor(client):
     response = client.post('/nuevoProveedor', json=data)
     assert response.status_code == 201
     assert response.json['nombre'] == data['nombre']
+
+def test_delete_proveedores(client):
+    data = {'id': 1}
+    response = client.post('/eliminarProveedor', json=data)
+    assert response.status_code == 200
+    assert response.json['id'] == data['id']
