@@ -60,3 +60,8 @@ def test_delete_rol(client):
     assert response.status_code == 201
     data = json.loads(response.data)
     assert data['id'] == 3
+
+def test_get_historial(client):
+    response = client.get('/historial')
+    assert response.status_code == 200
+    assert isinstance(response.json, list)
