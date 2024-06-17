@@ -65,3 +65,15 @@ def test_get_historial(client):
     response = client.get('/historial')
     assert response.status_code == 200
     assert isinstance(response.json, list)
+
+def test_add_historial(client):
+    data = {
+        'id_usuario': 1,
+        'productos': 'Producto A, Producto B',
+        'total': 150.75
+    }
+    response = client.post('/nuevoHistorial',json=data)
+    assert response.status_code == 201
+    assert response.json['id_usuario'] == data['id_usuario']
+    assert response.json['productos'] == data['productos']
+    assert response.json['total'] == data['total']
