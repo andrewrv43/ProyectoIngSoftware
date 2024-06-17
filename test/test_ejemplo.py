@@ -102,3 +102,10 @@ def test_add_producto(client):
     assert response.json['stock'] == data['stock']
     assert response.json['precio'] == data['precio']
     assert response.json['id_proveedor'] == data['id_proveedor']
+
+def test_delete_producto(client):
+    data = {'id': 1}
+    response = client.post('/eliminarProducto', json=data)
+    assert response.status_code == 200
+    assert response.json['id'] == data['id']
+
