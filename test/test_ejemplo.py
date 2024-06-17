@@ -114,3 +114,11 @@ def test_obtener_producto_id(client):
     response = client.post('/obtProducto', json=data)
     assert response.status_code == 200
     assert response.json['id'] == data['id']
+
+
+def test_get_Proveedor(client):
+    response = client.get('/obtProveedores')
+    assert response.status_code == 200
+    assert isinstance(response.json, list)
+
+    
