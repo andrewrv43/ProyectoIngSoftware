@@ -6,6 +6,8 @@ from controlador.usuarios_control import usuario_blueprint
 from controlador.productos_control import producto_blueprint
 from controlador.historial_control import historial_blueprint
 from controlador.promociones_control import promociones_blueprint
+from flask_cors import CORS
+
 
 
 def create_app():
@@ -14,7 +16,7 @@ def create_app():
     
     db.init_app(app)
     swagger = Swagger(app)
-    
+    CORS(app)
     with app.app_context():
         db.create_all()
 
